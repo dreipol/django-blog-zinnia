@@ -29,7 +29,9 @@ WYSIWYG_MARKUP_MAPPING = {
     'textile': 'markitup',
     'markdown': 'markitup',
     'restructuredtext': 'markitup',
-    'html': 'tinymce' in settings.INSTALLED_APPS and 'tinymce' or 'wymeditor'}
+    'html': 'tinymce' in settings.INSTALLED_APPS and 'tinymce'
+            or 'wymeditor'
+            or 'ckeditor'}
 
 WYSIWYG = getattr(settings, 'ZINNIA_WYSIWYG',
                   WYSIWYG_MARKUP_MAPPING.get(MARKUP_LANGUAGE))

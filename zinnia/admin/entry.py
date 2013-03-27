@@ -1,4 +1,5 @@
 """EntryAdmin for Zinnia"""
+from django.template import Context
 from django.forms import Media
 from django.contrib import admin
 from django.conf.urls import url
@@ -332,7 +333,10 @@ class EntryAdmin(admin.ModelAdmin):
                 name='zinnia_entry_markitup'),
             url(r'^markitup/preview/$',
                 self.admin_site.admin_view(self.content_preview),
-                name='zinnia_entry_markitup_preview'),)
+                name='zinnia_entry_markitup_preview'),
+            url(r'^ckeditor/$',
+                self.admin_site.admin_view(self.ckeditor),
+                name='zinnia_entry_ckeditor'),)
         return urls + entry_admin_urls
 
     def autocomplete_tags(self, request):
@@ -353,6 +357,22 @@ class EntryAdmin(admin.ModelAdmin):
         return TemplateResponse(
             request, 'admin/zinnia/entry/markitup.js',
             mimetype='application/javascript')
+
+    def ckeditor(self, request):
+        """View for serving the config of ckeditor, when defined, pass custom
+        ckesettings to the JS
+        """
+        context = None
+
+        if hasattr(project_settings, 'ZINNIA_WYSIWYG_CKEDITOR_SETTINGS'):
+            context = Context({
+                'settings': project_settings.ZINNIA_WYSIWYG_CKEDITOR_SETTINGS,})
+        return TemplateResponse(
+            request,
+            'admin/zinnia/entry/ckeditor_config.js',
+            context=context,
+            mimetype='application/javascript')
+
 
     @csrf_exempt
     def content_preview(self, request):
@@ -393,5 +413,12 @@ class EntryAdmin(admin.ModelAdmin):
                     '%sjs/markitup/skins/django/style.css' % STATIC_URL,
                     '%sjs/markitup/sets/%s/style.css' % (
                         STATIC_URL, settings.MARKUP_LANGUAGE))})
+        elif settings.WYSIWYG == 'ckeditor':
+            media += Media(
+                js=('%sjs/ckeditor/ckeditor.js' % STATIC_URL,
+                    reverse('admin:zinnia_entry_ckeditor')),
+                css={'all':('%s/css/ckeditor_styles.css' % STATIC_URL,)})
+
+
         return media
     media = property(_media)
