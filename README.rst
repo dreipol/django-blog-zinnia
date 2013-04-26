@@ -1,6 +1,6 @@
-==================
-Django Blog Zinnia
-==================
+==================================
+Django Blog Zinnia |travis-master|
+==================================
 
 Simple yet powerful and really extendable application for managing a blog
 within your Django Web site.
@@ -62,7 +62,6 @@ or you can visit these websites who use Zinnia.
 * `Tryolabs`_.
 * `AR.Drone Best of User Videos`_.
 * `Professional Web Studio`_.
-* `mixedCase`_.
 * `brainbreach`_.
 * `Mauro Bianchi`_.
 * `Sergey Miracle`_.
@@ -83,7 +82,9 @@ More information and help available at these URLs :
 * Discussions and help at `Google Group`_.
 * For reporting a bug use `Github Issues`_.
 
-
+.. |travis-master| image:: https://travis-ci.org/Fantomas42/django-blog-zinnia.png?branch=master
+   :alt: Build Status - master branch
+   :target: http://travis-ci.org/Fantomas42/django-blog-zinnia
 .. _`Sitemaps`: http://docs.django-blog-zinnia.com/en/latest/getting-started/configuration.html#module-zinnia.sitemaps
 .. _`Advanced search engine`: http://docs.django-blog-zinnia.com/en/latest/topics/search_engines.html
 .. _`Custom templates for various contents`: http://docs.django-blog-zinnia.com/en/latest/getting-started/configuration.html#templates-for-entries
@@ -110,7 +111,6 @@ More information and help available at these URLs :
 .. _`Fantomas' side`: http://fantomas.willbreak.it/blog/
 .. _`Mobile version`: http://m.fantomas.willbreak.it/blog/
 .. _`Professional Web Studio`: http://www.professionalwebstudio.com/en/weblog/
-.. _`mixedCase`: http://www.mixedcase.nl/articles/
 .. _`Tryolabs`: http://www.tryolabs.com/Blog/
 .. _`brainbreach`: http://brainbreach.com/
 .. _`Mauro Bianchi`: http://www.maurobianchi.it/
