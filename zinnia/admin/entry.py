@@ -1,4 +1,5 @@
 """EntryAdmin for Zinnia"""
+import json
 from django.template import Context
 from django.forms import Media
 from django.contrib import admin
@@ -364,9 +365,9 @@ class EntryAdmin(admin.ModelAdmin):
         """
         context = None
 
-        if hasattr(project_settings, 'ZINNIA_WYSIWYG_CKEDITOR_SETTINGS'):
+        if hasattr(project_settings, 'ZINNIA_WYSIWYG_CKEDITOR_OPTIONS'):
             context = Context({
-                'settings': project_settings.ZINNIA_WYSIWYG_CKEDITOR_SETTINGS,})
+                'settings': json.dumps(project_settings.ZINNIA_WYSIWYG_CKEDITOR_OPTIONS),})
         return TemplateResponse(
             request,
             'admin/zinnia/entry/ckeditor_config.js',
